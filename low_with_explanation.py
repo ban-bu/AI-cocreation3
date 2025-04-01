@@ -337,7 +337,7 @@ def get_preset_logos():
     return preset_logos
 
 # AI Customization Group design page
-def show_low_complexity_popup_sales():
+def show_low_recommendation_with_explanation():
     st.title("👕 AI Co-Creation Experiment Platform")
     st.markdown("### Low recommendation-with explanation - Create Your Unique T-shirt Design")
     
