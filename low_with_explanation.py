@@ -969,12 +969,10 @@ def show_low_complexity_popup_sales():
                                 st.session_state.font_debug_info = font_debug_info
                                 
                                 print("成功重新应用文字")
-                            else:
-                                print("无法重新应用文字：字体加载失败")
-                        except Exception as e:
-                            print(f"重新应用文字时出错: {e}")
-                            import traceback
-                            print(traceback.format_exc())
+                            except Exception as e:
+                                print(f"重新应用文字时出错: {e}")
+                                import traceback
+                                print(traceback.format_exc())
                 
                 # 重新应用Logo
                 if 'applied_logo' in st.session_state and 'selected_preset_logo' in st.session_state:
@@ -1255,12 +1253,8 @@ def show_low_complexity_popup_sales():
             with dl_col3:
                 # Confirm completion button
                 if st.button("Confirm completion"):
-                            else:
-                                st.error("Failed to load any font. Cannot apply text.")
-                        except Exception as e:
-                            st.error(f"Error applying text: {str(e)}")
-                            import traceback
-                            st.error(traceback.format_exc())
+                    st.session_state.page = "survey"
+                    st.rerun()
 
         # Logo设计部分
         st.markdown("#### 🖼️ Logo Design")
