@@ -1218,6 +1218,20 @@ def show_low_complexity_popup_sales():
                 if st.button("Confirm completion"):
                     st.session_state.page = "survey"
                     st.rerun()
+            
+            # 添加返回主页按钮
+            st.markdown("---")  # 添加分隔线
+            if st.button("🏠 Retrun to Main Page"):
+                # 重置所有相关的session state
+                for key in ['base_image', 'current_image', 'final_design', 'generated_design', 
+                          'applied_text', 'applied_logo', 'generated_logo', 'logo_auto_generated',
+                          'show_generated_logo', 'shirt_color_hex', 'current_applied_color',
+                          'fabric_type', 'current_applied_fabric', 'ai_suggestions']:
+                    if key in st.session_state:
+                        del st.session_state[key]
+                # 设置页面为welcome
+                st.session_state.page = "welcome"
+                st.rerun()
     
     with controls_col:
         # 操作区，包含AI建议和其他控制选项
