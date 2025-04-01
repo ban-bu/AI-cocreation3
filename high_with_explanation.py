@@ -36,7 +36,7 @@ GPT4O_MINI_BASE_URL = "https://api.deepbricks.ai/v1/"
 # 从svg_utils导入SVG转换函数
 from svg_utils import convert_svg_to_png
 
-def get_ai_design_suggestions(user_preferences=None):
+def get_ai_design_suggestions(user_preferences=None, age_group=None, gender=None, interests=None, occasion=None):
     """Get design suggestions from GPT-4o-mini with more personalized features"""
     client = OpenAI(api_key=GPT4O_MINI_API_KEY, base_url=GPT4O_MINI_BASE_URL)
     
@@ -44,28 +44,44 @@ def get_ai_design_suggestions(user_preferences=None):
     if not user_preferences:
         user_preferences = "casual fashion t-shirt design"
     
+    # Construct the prompt with user information
+    user_info = []
+    if age_group:
+        user_info.append(f"Age Group: {age_group}")
+    if gender:
+        user_info.append(f"Gender: {gender}")
+    if interests:
+        user_info.append(f"Interests/Hobbies: {interests}")
+    if occasion:
+        user_info.append(f"Wearing Occasion: {occasion}")
+    
+    user_info_str = "\n".join(user_info) if user_info else ""
+    
     # Construct the prompt
     prompt = f"""
     As a T-shirt design consultant, please provide personalized design suggestions for a "{user_preferences}" style T-shirt.
     
-    Please provide the following design suggestions:
+    User Information:
+    {user_info_str}
+    
+    Please provide the following design suggestions based on the user's profile:
 
     1. Color Suggestions: Recommend 2 suitable colors, including:
        - Color name and hex code (e.g., Blue (#0000FF))
-       - Why this color suits the style (2-3 sentences explanation)
+       - Why this color suits the style and user profile (2-3 sentences explanation)
        
     2. Fabric Texture Suggestions: Recommend 2 suitable fabric types, including:
        - Specific fabric name (Cotton, Polyester, Cotton-Polyester Blend, Jersey, Linen, or Bamboo)
-       - Brief explanation on why this fabric suits the style
+       - Brief explanation on why this fabric suits the style and occasion
        
     3. Text Suggestions: Recommend 2 suitable texts/phrases:
-       - Specific text content
+       - Specific text content that resonates with the user's interests and age group
        - Recommended font style
        - Brief explanation of suitability
        
     4. Logo Element Suggestions: Recommend 2 suitable design elements:
-       - Element description
-       - How it complements the overall style
+       - Element description that matches user's interests and occasion
+       - How it complements the overall style and user profile
        
     Please ensure to include hex codes for colors, keep content detailed but concise.
     For text suggestions, place each recommended phrase/text on a separate line and wrap them in quotes, e.g., "Just Do It".
@@ -1294,11 +1310,21 @@ def show_high_recommendation_with_explanation():
             # 添加用户偏好输入
             user_preference = st.text_input("Describe your preferred style or usage", placeholder="For example: sports style, business, casual daily, etc.")
             
+            # 添加用户信息输入
+            age_group = st.selectbox("Age group:", ["", "Under 18", "18-24", "25-34", "35-44", "45-54", "55+"])
+            gender = st.selectbox("Gender:", ["", "Male", "Female", "Other", "Prefer not to say"])
+            interests = st.text_input("Your interests or hobbies:", placeholder="E.g., sports, music, art, gaming...")
+            occasion = st.selectbox("Occasion for wearing:", ["", "Casual Daily", "Sports/Exercise", "Work/Business", "Party/Social", "Special Event"])
+            
             # 添加获取建议按钮
             if st.button("Get personalized AI suggestions", key="get_ai_advice"):
                 with st.spinner("Generating personalized design suggestions..."):
                     suggestions = get_ai_design_suggestions(
-                        user_preferences=user_preference
+                        user_preferences=user_preference,
+                        age_group=age_group if age_group else None,
+                        gender=gender if gender else None,
+                        interests=interests if interests else None,
+                        occasion=occasion if occasion else None
                     )
                     st.session_state.ai_suggestions = suggestions
             
