@@ -1307,14 +1307,18 @@ def show_high_recommendation_with_explanation():
         # 操作区，包含AI建议和其他控制选项
         with st.expander("🤖 AI design suggestions", expanded=True):
             st.markdown("#### Get AI Suggestions")
-            # 添加用户偏好输入
-            user_preference = st.text_input("Describe your preferred style or usage", placeholder="For example: sports style, business, casual daily, etc.")
             
             # 添加用户信息输入
-            age_group = st.selectbox("Age group:", ["", "Under 18", "18-24", "25-34", "35-44", "45-54", "55+"])
-            gender = st.selectbox("Gender:", ["", "Male", "Female", "Other", "Prefer not to say"])
-            interests = st.text_input("Your interests or hobbies:", placeholder="E.g., sports, music, art, gaming...")
-            occasion = st.selectbox("Occasion for wearing:", ["", "Casual Daily", "Sports/Exercise", "Work/Business", "Party/Social", "Special Event"])
+            col1, col2 = st.columns(2)
+            with col1:
+                age_group = st.selectbox("Age group:", ["", "Under 18", "18-24", "25-34", "35-44", "45-54", "55+"])
+                interests = st.text_input("Your interests or hobbies:", placeholder="E.g., sports, music, art, gaming...")
+            with col2:
+                gender = st.selectbox("Gender:", ["", "Male", "Female", "Other", "Prefer not to say"])
+                occasion = st.selectbox("Occasion for wearing:", ["", "Casual Daily", "Sports/Exercise", "Work/Business", "Party/Social", "Special Event"])
+            
+            # 添加用户偏好输入
+            user_preference = st.text_input("Describe your preferred style or usage", placeholder="For example: sports style, business, casual daily, etc.")
             
             # 添加获取建议按钮
             if st.button("Get personalized AI suggestions", key="get_ai_advice"):
