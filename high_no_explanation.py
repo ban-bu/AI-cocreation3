@@ -381,7 +381,7 @@ def get_preset_logos():
 # AI Customization Group design page
 def show_high_complexity_popup_sales():
     st.title("👕 AI Co-Creation Experiment Platform")
-    st.markdown("### High Task Complexity-Popup Sales - Create Your Unique T-shirt Design")
+    st.markdown("### High recommendation-without explanation - Create Your Unique T-shirt Design")
     
     # 添加General Sales情境描述
     
@@ -1265,14 +1265,26 @@ def show_high_complexity_popup_sales():
             
             # 添加返回主页按钮
             st.markdown("---")  # 添加分隔线
-            if st.button("🏠 Retrun to Main Page"):
+            if st.button("🏠 返回主页"):
                 # 重置所有相关的session state
-                for key in ['base_image', 'current_image', 'final_design', 'generated_design', 
-                          'applied_text', 'applied_logo', 'generated_logo', 'logo_auto_generated',
-                          'show_generated_logo', 'shirt_color_hex', 'current_applied_color',
-                          'fabric_type', 'current_applied_fabric', 'ai_suggestions']:
+                keys_to_reset = [
+                    'base_image', 'current_image', 'final_design', 'generated_design',
+                    'applied_text', 'applied_logo', 'generated_logo', 'logo_auto_generated',
+                    'show_generated_logo', 'shirt_color_hex', 'current_applied_color',
+                    'fabric_type', 'current_applied_fabric', 'ai_suggestions',
+                    'original_base_image', 'current_box_position', 'text_layer',
+                    'text_size_info', 'text_position', 'font_debug_info',
+                    'loaded_font_path', 'using_fallback_text', 'design_area',
+                    'ai_suggested_colors', 'ai_suggested_texts', 'ai_suggested_fabrics',
+                    'ai_suggested_logos', 'logo_prompt', 'selected_preset_logo',
+                    'temp_text_selection', 'ai_text_suggestion'
+                ]
+                
+                # 清除所有状态变量
+                for key in keys_to_reset:
                     if key in st.session_state:
                         del st.session_state[key]
+                
                 # 设置页面为welcome
                 st.session_state.page = "welcome"
                 st.rerun()
