@@ -572,6 +572,7 @@ def show_low_complexity_popup_sales():
                             print(f"已调整Logo透明度为: {logo_opacity}%")
                         
                         # 粘贴Logo到新设计
+                        final_design = None
                         try:
                             # 确保图像处于RGBA模式以支持透明度
                             final_design_rgba = st.session_state.final_design.convert("RGBA")
@@ -582,18 +583,26 @@ def show_low_complexity_popup_sales():
                             
                             # 使用alpha_composite合成图像
                             final_design = Image.alpha_composite(final_design_rgba, temp_image)
-                            st.session_state.final_design = final_design
                         except Exception as e:
                             st.warning(f"Logo pasting failed: {e}")
+                            final_design = st.session_state.final_design
                         
-                        # 更新当前图像
-                        st.session_state.current_image = st.session_state.final_design.copy()
-                        
-                        # 重新保存Logo信息和图像
-                        st.session_state.applied_logo = temp_logo_info
-                        st.session_state.generated_logo = temp_logo  # 确保保存回原始Logo
-                        
-                        print(f"Logo重新应用成功: {logo_prompt}")
+                        if final_design is not None:
+                            # 更新设计
+                            st.session_state.final_design = final_design
+                            st.session_state.current_image = final_design.copy()
+                            
+                            # 保存Logo信息用于后续可能的更新
+                            st.session_state.applied_logo = {
+                                "source": logo_info["source"],
+                                "path": st.session_state.get('selected_preset_logo', None),
+                                "size": logo_info["size"],
+                                "position": logo_info["position"],
+                                "opacity": logo_info["opacity"]
+                            }
+                            
+                            st.success("Logo applied to design successfully!")
+                            st.rerun()
                     except Exception as e:
                         print(f"重新应用Logo时出错: {e}")
                         import traceback
@@ -969,7 +978,10 @@ def show_low_complexity_popup_sales():
                                 st.session_state.font_debug_info = font_debug_info
                                 
                                 print("成功重新应用文字")
-
+                            except Exception as e:
+                                print(f"重新应用文字时出错: {e}")
+                                import traceback
+                                print(traceback.format_exc())
                 
                 # 重新应用Logo
                 if 'applied_logo' in st.session_state and 'selected_preset_logo' in st.session_state:
@@ -1018,6 +1030,7 @@ def show_low_complexity_popup_sales():
                             logo_resized.putdata(new_data)
                         
                         # 粘贴Logo到设计
+                        final_design = None
                         try:
                             # 确保图像处于RGBA模式以支持透明度
                             final_design_rgba = st.session_state.final_design.convert("RGBA")
@@ -1028,25 +1041,26 @@ def show_low_complexity_popup_sales():
                             
                             # 使用alpha_composite合成图像
                             final_design = Image.alpha_composite(final_design_rgba, temp_image)
-                            st.session_state.final_design = final_design
                         except Exception as e:
                             st.warning(f"Logo pasting failed: {e}")
+                            final_design = st.session_state.final_design
                         
-                        # 更新设计
-                        st.session_state.final_design = final_design
-                        st.session_state.current_image = final_design.copy()
-                        
-                        # 保存Logo信息用于后续可能的更新
-                        st.session_state.applied_logo = {
-                            "source": logo_info["source"],
-                            "path": st.session_state.get('selected_preset_logo', None),
-                            "size": logo_info["size"],
-                            "position": logo_info["position"],
-                            "opacity": logo_info["opacity"]
-                        }
-                        
-                        st.success("Logo applied to design successfully!")
-                        st.rerun()
+                        if final_design is not None:
+                            # 更新设计
+                            st.session_state.final_design = final_design
+                            st.session_state.current_image = final_design.copy()
+                            
+                            # 保存Logo信息用于后续可能的更新
+                            st.session_state.applied_logo = {
+                                "source": logo_info["source"],
+                                "path": st.session_state.get('selected_preset_logo', None),
+                                "size": logo_info["size"],
+                                "position": logo_info["position"],
+                                "opacity": logo_info["opacity"]
+                            }
+                            
+                            st.success("Logo applied to design successfully!")
+                            st.rerun()
                     except Exception as e:
                         st.warning(f"Error reapplying logo: {e}")
                 
