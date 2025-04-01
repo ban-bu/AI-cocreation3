@@ -1221,7 +1221,7 @@ def show_low_complexity_popup_sales():
             
             # 添加返回主页按钮
             st.markdown("---")  # 添加分隔线
-            if st.button("🏠 返回主页"):
+            if st.button("🏠 Retrun to Main Page"):
                 # 重置所有相关的session state
                 keys_to_reset = [
                     'base_image', 'current_image', 'final_design', 'generated_design',
