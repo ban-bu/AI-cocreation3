@@ -383,6 +383,70 @@ def show_high_complexity_general_sales():
     st.title("👕 AI Co-Creation Experiment Platform")
     st.markdown("### High Task Complexity-General Sales - Create Your Unique T-shirt Design")
     
+    # 添加General Sales情境描述
+    
+    # 任务复杂度说明
+    st.markdown("""
+    <div style="background-color:#f0f0f0; padding:20px; border-radius:10px; margin-bottom:20px; border-left:4px solid #2196F3">
+    <h4 style="color:#1976D2; margin-top:0">Advanced Customization Options</h4>
+    <p>In this experience, you can customize your T-shirt with the following comprehensive options:</p>
+    
+    <div style="margin-left:15px">
+    <h5 style="color:#2196F3">1. T-shirt Color & Fabric Selection</h5>
+    <p>Choose your preferred T-shirt color from AI recommendations, preset options, or use a custom color picker. Enhanced with multiple fabric texture options:</p>
+    <ul>
+        <li>Cotton: Soft and breathable natural fiber</li>
+        <li>Polyester: Durable and wrinkle-resistant synthetic fabric</li>
+        <li>Cotton-Polyester Blend: Perfect balance of comfort and durability</li>
+        <li>Jersey: Stretchy knit fabric with excellent drape</li>
+        <li>Linen: Lightweight natural fabric with superior cooling properties</li>
+        <li>Bamboo: Sustainable fabric with silky smooth texture</li>
+    </ul>
+    
+    <h5 style="color:#2196F3">2. Advanced Text Customization</h5>
+    <p>Create eye-catching designs with comprehensive text customization options:</p>
+    <ul>
+        <li>Font Selection: Arial, Times New Roman, Courier, Verdana, Georgia, Script, Impact</li>
+        <li>Text Styles: Bold, Italic, Underline, Shadow, Outline</li>
+        <li>Special Effects: Bent, Arch, Wave, 3D, Gradient</li>
+        <li>Alignment Options: Left, Center, Right</li>
+        <li>Dynamic Size: Adjustable from 20 to 400 pixels</li>
+    </ul>
+    
+    <h5 style="color:#2196F3">3. Professional Logo Integration</h5>
+    <p>Enhance your design with versatile logo options:</p>
+    <ul>
+        <li>AI-Generated Logos: Create professional logos from descriptions</li>
+        <li>Preset Logo Library: Choose from curated logo collection</li>
+        <li>Custom Logo Upload: Use your own logo designs</li>
+        <li>Logo Customization: Adjust size, position, and transparency</li>
+    </ul>
+    
+    <h5 style="color:#2196F3">4. Precise Design Positioning</h5>
+    <p>Achieve perfect composition with advanced positioning tools:</p>
+    <ul>
+        <li>Precise placement of text and logo elements</li>
+        <li>Multiple preset position options</li>
+        <li>Real-time preview and adjustment</li>
+        <li>Smart alignment assistance</li>
+    </ul>
+    
+    <h5 style="color:#2196F3">5. AI Design Assistant</h5>
+    <p>Get intelligent design recommendations:</p>
+    <ul>
+        <li>Color combination suggestions</li>
+        <li>Fabric type recommendations</li>
+        <li>Text content ideas</li>
+        <li>Logo design inspiration</li>
+    </ul>
+    </div>
+    
+    <p style="margin-top:15px; color:#666">
+    <i>💡 Tip: Start with AI suggestions for the best results, then customize further based on your preferences.</i>
+    </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
     # 初始化T恤颜色和纹理状态变量
     if 'shirt_color_hex' not in st.session_state:
         st.session_state.shirt_color_hex = "#FFFFFF"  # 默认白色
@@ -1241,7 +1305,7 @@ def show_high_complexity_general_sales():
                 st.rerun()
             
             # 下载和确认按钮
-            dl_col1, dl_col2, dl_col3 = st.columns(3)
+            dl_col1, dl_col2 = st.columns(2)
             with dl_col1:
                 buf = BytesIO()
                 st.session_state.final_design.save(buf, format="PNG")
@@ -1254,47 +1318,6 @@ def show_high_complexity_general_sales():
                 )
             
             with dl_col2:
-                # Return to main page button
-                if st.button("🏠 Back to main page"):
-                    # Clear all design-related states
-                    keys_to_clear = [
-                        # Basic image states
-                        'base_image', 'current_image', 'current_box_position', 
-                        'original_base_image', 'final_design', 'generated_design',
-                        
-                        # Color and fabric related
-                        'shirt_color_hex', 'current_applied_color', 'fabric_type',
-                        'current_applied_fabric',
-                        
-                        # AI suggestions related
-                        'ai_suggestions', 'ai_suggested_colors', 'ai_suggested_texts',
-                        
-                        # Text related
-                        'applied_text', 'current_text_info', 'ai_text_suggestion',
-                        'temp_text_selection', 'text_position', 'text_size_info',
-                        
-                        # Logo related
-                        'applied_logo', 'generated_logo', 'logo_auto_generated',
-                        'show_generated_logo', 'selected_preset_logo',
-                        
-                        # Debug info
-                        'font_debug_info', 'tshirt_size', 'design_area',
-                        'loaded_font_path', 'using_fallback_text'
-                    ]
-                    
-                    # Clear all states
-                    for key in keys_to_clear:
-                        if key in st.session_state:
-                            del st.session_state[key]
-                    
-                    # Keep user info and experiment group, but clear current page state
-                    st.session_state.page = "welcome"
-                    
-                    # Add success message
-                    st.success("All designs have been cleared, returning to the main page...")
-                    st.rerun()
-            
-            with dl_col3:
                 # Confirm completion button
                 if st.button("Confirm completion"):
                     st.session_state.page = "survey"
