@@ -84,7 +84,7 @@ def show_welcome_page():
         - Professional design tools
         """)
         if st.button("Choose High Recommendation - No Explanation"):
-            st.session_state.experiment_group = "AI Creation Group"
+            st.session_state.experiment_group = "Preset Design Group"
             st.session_state.user_info = {
                 'age': 25,
                 'gender': "Male",
@@ -107,7 +107,7 @@ def show_welcome_page():
         - Intelligent design assistance
         """)
         if st.button("Choose High Recommendation - With Explanation"):
-            st.session_state.experiment_group = "Preset Design Group"
+            st.session_state.experiment_group = "AI Creation Group"
             st.session_state.user_info = {
                 'age': 25,
                 'gender': "Male",
