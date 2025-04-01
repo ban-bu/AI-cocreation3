@@ -1297,7 +1297,7 @@ def show_high_recommendation_without_explanation():
             user_preference = st.text_input("Describe your preferred style or usage", placeholder="For example: sports style, business, casual daily, etc.")
             
             # 添加获取建议按钮
-            if st.button("Get personalized AI suggestions", key="get_ai_advice"):
+            if st.button("Get AI suggestions", key="get_ai_advice"):
                 with st.spinner("Generating personalized design suggestions..."):
                     suggestions = get_ai_design_suggestions(
                         user_preferences=user_preference
