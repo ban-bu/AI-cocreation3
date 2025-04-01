@@ -1393,38 +1393,14 @@ def show_low_recommendation_without_explanation():
         
         # 文字设计部分 - 独立出来，确保始终显示
         with st.expander("✍️ Text Design", expanded=True):
-            # 显示AI建议的文字候选项
-            if 'ai_suggested_texts' in st.session_state and st.session_state.ai_suggested_texts:
-                st.markdown("**AI Suggested Text Options:**")
-                
-                # 创建候选项网格布局
-                text_suggestions = st.session_state.ai_suggested_texts
-                suggestion_cols = st.columns(min(3, len(text_suggestions)))
-                
-                for i, suggestion in enumerate(text_suggestions):
-                    with suggestion_cols[i % 3]:
-                        # 使用Streamlit按钮替代HTML点击事件
-                        if st.button(suggestion, key=f"suggestion_{i}"):
-                            st.session_state.ai_text_suggestion = suggestion
-                            st.rerun()
-            
             # 文字选项
             text_col1, text_col2 = st.columns([2, 1])
             
             with text_col1:
-                # 使用临时变量的值作为默认值
-                default_input = ""
-                if 'temp_text_selection' in st.session_state:
-                    default_input = st.session_state.temp_text_selection
-                    # 使用后清除临时状态
-                    del st.session_state.temp_text_selection
-                elif 'ai_text_suggestion' in st.session_state:
-                    default_input = st.session_state.ai_text_suggestion
-                
-                text_content = st.text_input("Enter or copy AI recommended text", default_input, key="ai_text_suggestion")
+                text_content = st.text_input("Enter text for your design", key="text_input")
             
             with text_col2:
-                text_color = st.color_picker("Text color:", "#000000", key="ai_text_color")
+                text_color = st.color_picker("Text color:", "#000000", key="text_color")
             
             # 字体选择 - 扩展为高复杂度方案的选项
             font_options = ["Arial", "Times New Roman", "Courier", "Verdana", "Georgia", "Script", "Impact"]
