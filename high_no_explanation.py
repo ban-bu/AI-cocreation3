@@ -379,7 +379,7 @@ def get_preset_logos():
     return preset_logos
 
 # AI Customization Group design page
-def show_high_complexity_general_sales():
+def show_high_complexity_popup_sales():
     st.title("👕 AI Co-Creation Experiment Platform")
     st.markdown("### High Task Complexity-General Sales - Create Your Unique T-shirt Design")
     
