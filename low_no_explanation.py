@@ -353,7 +353,7 @@ def get_preset_logos():
 # AI Customization Group design page
 def show_low_complexity_general_sales():
     st.title("👕 AI Co-Creation Experiment Platform")
-    st.markdown("### High Task Complexity-General Sales - Create Your Unique T-shirt Design")
+    st.markdown("### Low Task Complexity-General Sales - Create Your Unique T-shirt Design")
     
     # 添加General Sales情境描述
     
