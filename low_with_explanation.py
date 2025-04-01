@@ -969,10 +969,7 @@ def show_low_complexity_popup_sales():
                                 st.session_state.font_debug_info = font_debug_info
                                 
                                 print("成功重新应用文字")
-                            except Exception as e:
-                                print(f"重新应用文字时出错: {e}")
-                                import traceback
-                                print(traceback.format_exc())
+
                 
                 # 重新应用Logo
                 if 'applied_logo' in st.session_state and 'selected_preset_logo' in st.session_state:
