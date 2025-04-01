@@ -30,14 +30,14 @@ def show_welcome_page():
     
     with col1:
         st.markdown('<div class="group-card">', unsafe_allow_html=True)
-        st.markdown("#### Low Complexity - No Explanation")
+        st.markdown("#### Low Recommendation - No Explanation")
         st.markdown("""
         - Simple customization tasks
         - Basic design options
         - No AI explanation
         - Intuitive interface
         """)
-        if st.button("Choose Low Complexity - No Explanation"):
+        if st.button("Choose Low Recommendation - No Explanation"):
             st.session_state.experiment_group = "AI Customization Group"
             st.session_state.user_info = {
                 'age': 25,
@@ -53,14 +53,14 @@ def show_welcome_page():
     
     with col2:
         st.markdown('<div class="group-card">', unsafe_allow_html=True)
-        st.markdown("#### Low Complexity - With Explanation")
+        st.markdown("#### Low Recommendation - With Explanation")
         st.markdown("""
         - Simple customization tasks
         - Basic design options
         - AI design explanations
         - Smart recommendations
         """)
-        if st.button("Choose Low Complexity - With Explanation"):
+        if st.button("Choose Low Recommendation - With Explanation"):
             st.session_state.experiment_group = "AI Design Group"
             st.session_state.user_info = {
                 'age': 25,
@@ -76,14 +76,14 @@ def show_welcome_page():
     
     with col3:
         st.markdown('<div class="group-card">', unsafe_allow_html=True)
-        st.markdown("#### High Complexity - No Explanation")
+        st.markdown("#### High Recommendation - No Explanation")
         st.markdown("""
         - Advanced customization options
         - Rich design features
         - No AI explanation
         - Professional design tools
         """)
-        if st.button("Choose High Complexity - No Explanation"):
+        if st.button("Choose High Recommendation - No Explanation"):
             st.session_state.experiment_group = "AI Creation Group"
             st.session_state.user_info = {
                 'age': 25,
@@ -99,14 +99,14 @@ def show_welcome_page():
         
     with col4:
         st.markdown('<div class="group-card">', unsafe_allow_html=True)
-        st.markdown("#### High Complexity - With Explanation")
+        st.markdown("#### High Recommendation - With Explanation")
         st.markdown("""
         - Advanced customization options
         - Rich design features
         - AI design explanations
         - Intelligent design assistance
         """)
-        if st.button("Choose High Complexity - With Explanation"):
+        if st.button("Choose High Recommendation - With Explanation"):
             st.session_state.experiment_group = "Preset Design Group"
             st.session_state.user_info = {
                 'age': 25,
@@ -136,10 +136,10 @@ def show_welcome_page():
                     st.markdown("#### Participant Statistics")
                     group_counts = experiment_df['experiment_group'].value_counts()
                     st.write(f"Total participants: {len(experiment_df)}")
-                    st.write(f"Low Complexity - No Explanation: {group_counts.get('AI Customization Group', 0)} people")
-                    st.write(f"Low Complexity - With Explanation: {group_counts.get('AI Design Group', 0)} people")
-                    st.write(f"High Complexity - No Explanation: {group_counts.get('AI Creation Group', 0)} people")
-                    st.write(f"High Complexity - With Explanation: {group_counts.get('Preset Design Group', 0)} people")
+                    st.write(f"Low Recommendation - No Explanation: {group_counts.get('AI Customization Group', 0)} people")
+                    st.write(f"Low Recommendation - With Explanation: {group_counts.get('AI Design Group', 0)} people")
+                    st.write(f"High Recommendation - No Explanation: {group_counts.get('AI Creation Group', 0)} people")
+                    st.write(f"High Recommendation - With Explanation: {group_counts.get('Preset Design Group', 0)} people")
                     
                     # Purchase intention comparison
                     st.markdown("#### Purchase Intention Comparison")
