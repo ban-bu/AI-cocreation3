@@ -48,10 +48,10 @@ from svg_utils import convert_svg_to_png
 # 导入分拆出去的各页面模块
 from welcome_page import show_welcome_page
 # 导入四个组对应的新文件
-from low_无解释 import show_low_complexity_general_sales
-from low_有解释 import show_low_complexity_popup_sales
-from high_无解释 import show_high_complexity_popup_sales
-from high_有解释 import show_high_complexity_general_sales
+from low_no_explanation import show_low_complexity_general_sales
+from low_with_explanation import show_low_complexity_popup_sales
+from high_no_explanation import show_high_complexity_popup_sales
+from high_with_explanation import show_high_complexity_general_sales
 from survey_page import show_survey_page, initialize_experiment_data, save_experiment_data
 
 # Page configuration
