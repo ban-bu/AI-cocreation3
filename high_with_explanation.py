@@ -385,68 +385,6 @@ def show_high_complexity_general_sales():
     
     # 添加General Sales情境描述
     
-    # 任务复杂度说明
-    st.markdown("""
-    <div style="background-color:#f0f0f0; padding:20px; border-radius:10px; margin-bottom:20px; border-left:4px solid #2196F3">
-    <h4 style="color:#1976D2; margin-top:0">Advanced Customization Options</h4>
-    <p>In this experience, you can customize your T-shirt with the following comprehensive options:</p>
-    
-    <div style="margin-left:15px">
-    <h5 style="color:#2196F3">1. T-shirt Color & Fabric Selection</h5>
-    <p>Choose your preferred T-shirt color from AI recommendations, preset options, or use a custom color picker. Enhanced with multiple fabric texture options:</p>
-    <ul>
-        <li>Cotton: Soft and breathable natural fiber</li>
-        <li>Polyester: Durable and wrinkle-resistant synthetic fabric</li>
-        <li>Cotton-Polyester Blend: Perfect balance of comfort and durability</li>
-        <li>Jersey: Stretchy knit fabric with excellent drape</li>
-        <li>Linen: Lightweight natural fabric with superior cooling properties</li>
-        <li>Bamboo: Sustainable fabric with silky smooth texture</li>
-    </ul>
-    
-    <h5 style="color:#2196F3">2. Advanced Text Customization</h5>
-    <p>Create eye-catching designs with comprehensive text customization options:</p>
-    <ul>
-        <li>Font Selection: Arial, Times New Roman, Courier, Verdana, Georgia, Script, Impact</li>
-        <li>Text Styles: Bold, Italic, Underline, Shadow, Outline</li>
-        <li>Special Effects: Bent, Arch, Wave, 3D, Gradient</li>
-        <li>Alignment Options: Left, Center, Right</li>
-        <li>Dynamic Size: Adjustable from 20 to 400 pixels</li>
-    </ul>
-    
-    <h5 style="color:#2196F3">3. Professional Logo Integration</h5>
-    <p>Enhance your design with versatile logo options:</p>
-    <ul>
-        <li>AI-Generated Logos: Create professional logos from descriptions</li>
-        <li>Preset Logo Library: Choose from curated logo collection</li>
-        <li>Custom Logo Upload: Use your own logo designs</li>
-        <li>Logo Customization: Adjust size, position, and transparency</li>
-    </ul>
-    
-    <h5 style="color:#2196F3">4. Precise Design Positioning</h5>
-    <p>Achieve perfect composition with advanced positioning tools:</p>
-    <ul>
-        <li>Precise placement of text and logo elements</li>
-        <li>Multiple preset position options</li>
-        <li>Real-time preview and adjustment</li>
-        <li>Smart alignment assistance</li>
-    </ul>
-    
-    <h5 style="color:#2196F3">5. AI Design Assistant</h5>
-    <p>Get intelligent design recommendations:</p>
-    <ul>
-        <li>Color combination suggestions</li>
-        <li>Fabric type recommendations</li>
-        <li>Text content ideas</li>
-        <li>Logo design inspiration</li>
-    </ul>
-    </div>
-    
-    <p style="margin-top:15px; color:#666">
-    <i>💡 Tip: Start with AI suggestions for the best results, then customize further based on your preferences.</i>
-    </p>
-    </div>
-    """, unsafe_allow_html=True)
-    
     # 初始化T恤颜色和纹理状态变量
     if 'shirt_color_hex' not in st.session_state:
         st.session_state.shirt_color_hex = "#FFFFFF"  # 默认白色
