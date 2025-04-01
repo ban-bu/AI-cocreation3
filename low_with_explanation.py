@@ -338,8 +338,48 @@ def get_preset_logos():
 
 # AI Customization Group design page
 def show_low_complexity_popup_sales():
+    # Add return to main page button
+    if st.button("Back to main page"):
+        # Clear all design-related states
+        keys_to_clear = [
+            # Basic image states
+            'base_image', 'current_image', 'current_box_position', 
+            'original_base_image', 'final_design', 'generated_design',
+            
+            # Color and fabric related
+            'shirt_color_hex', 'current_applied_color', 'fabric_type',
+            'current_applied_fabric',
+            
+            # AI suggestions related
+            'ai_suggestions', 'ai_suggested_colors', 'ai_suggested_texts',
+            
+            # Text related
+            'applied_text', 'current_text_info', 'ai_text_suggestion',
+            'temp_text_selection', 'text_position', 'text_size_info',
+            
+            # Logo related
+            'applied_logo', 'generated_logo', 'logo_auto_generated',
+            'show_generated_logo', 'selected_preset_logo',
+            
+            # Debug info
+            'font_debug_info', 'tshirt_size', 'design_area',
+            'loaded_font_path', 'using_fallback_text'
+        ]
+        
+        # Clear all states
+        for key in keys_to_clear:
+            if key in st.session_state:
+                del st.session_state[key]
+        
+        # Keep user info and experiment group, but clear current page state
+        st.session_state.page = "welcome"
+        
+        # Add success message
+        st.success("All designs have been cleared, returning to the main page...")
+        st.rerun()
+    
     st.title("👕 AI Co-Creation Experiment Platform")
-    st.markdown("### High Task Complexity-General Sales - Create Your Unique T-shirt Design")
+    st.markdown("### Low Task Complexity-General Sales - Create Your Unique T-shirt Design")
     
     # 添加General Sales情境描述
     
