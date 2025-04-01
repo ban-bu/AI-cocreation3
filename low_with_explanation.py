@@ -1312,6 +1312,10 @@ def show_low_complexity_popup_sales():
                     "light blue": "#ADD8E6"
                 }
             
+            # 添加提示文字
+            if st.session_state.ai_suggestions:
+                st.markdown("**Here are the colors AI provides:**")
+            
             # 创建颜色选择列表 - 动态创建
             colors = st.session_state.ai_suggested_colors
             color_cols = st.columns(min(3, len(colors)))

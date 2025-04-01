@@ -203,13 +203,13 @@ def main():
     elif st.session_state.page == "design":
         # 根据不同的实验组调用不同的设计页面函数
         if st.session_state.experiment_group == "AI Customization Group":
-            show_low_complexity_general_sales()
+            show_low_recommendation_without_explanation()
         elif st.session_state.experiment_group == "AI Design Group":
-            show_low_complexity_popup_sales()
+            show_low_recommendation_with_explanation()
         elif st.session_state.experiment_group == "AI Creation Group":
-            show_high_complexity_popup_sales()
+            show_high_recommendation_with_explanation()
         elif st.session_state.experiment_group == "Preset Design Group":
-            show_high_complexity_general_sales()
+            show_high_recommendation_without_explanation()
         else:
             st.error("实验组类型错误，请返回首页重新选择")
             if st.button("返回首页"):

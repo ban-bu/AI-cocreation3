@@ -379,7 +379,7 @@ def get_preset_logos():
     return preset_logos
 
 # AI Customization Group design page
-def show_high_complexity_popup_sales():
+def show_high_recommendation_without_explanation():
     st.title("👕 AI Co-Creation Experiment Platform")
     st.markdown("### High recommendation-without explanation - Create Your Unique T-shirt Design")
     
@@ -1319,6 +1319,10 @@ def show_high_complexity_popup_sales():
                     "light gray": "#CCCCCC", 
                     "light blue": "#ADD8E6"
                 }
+            
+            # 添加提示文字
+            if st.session_state.ai_suggestions:
+                st.markdown("**Here are the colors AI provides:**")
             
             # 创建颜色选择列表 - 动态创建
             colors = st.session_state.ai_suggested_colors
