@@ -1357,9 +1357,15 @@ def show_low_complexity_popup_sales():
                         st.success("Logo has been applied to the design successfully!")
                         st.rerun()
                     except Exception as e:
-                        st.error(f"Logo合成时出错: {str(e)}")
+                        st.error(f"Error applying new logo: {str(e)}")
+                        print(f"Error applying new logo: {str(e)}")
+                        import traceback
+                        print(traceback.format_exc())
                 except Exception as e:
-                    st.error(f"应用Logo时出错: {str(e)}")
+                    st.error(f"Error updating design with new logo: {str(e)}")
+                    print(f"Error updating design with new logo: {str(e)}")
+                    import traceback
+                    print(traceback.format_exc())
             
             # 添加分隔线
             st.markdown("---")
